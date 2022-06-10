@@ -1,4 +1,4 @@
-# Tech-Blog# by Sahil Patel
+# Tech-Blog by Sahil Patel
   
   
 ## Description 
