@@ -17,6 +17,30 @@ router.get('/', async (req, res) => {
     // Serialize data so the template can read it
     const blogs = postData.map((post) => post.get({ plain: true }));
 
+    // const blogs = [
+    //   {
+    //     id: 1,
+    //     title: 'title',
+    //     content: 'content',
+    //     author: 'author',
+    //     date: '1/17/2022',
+    //   },
+    //   {
+    //     id: 1,
+    //     title: 'title2',
+    //     content: 'content2',
+    //     author: 'author',
+    //     date: '1/17/2022',
+    //   },
+    //   {
+    //     id: 1,
+    //     title: 'title3',
+    //     content: 'content',
+    //     author: 'author',
+    //     date: '1/17/2022',
+    //   },
+    // ];
+
     // Pass serialized data and session flag into template
     console.log('blogs', blogs);
     res.render('homepage', {
@@ -42,6 +66,27 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     console.log('user', user);
 
+    // const blogs = [
+    //   {
+    //     title: 'title',
+    //     content: 'content',
+    //     author: 'author',
+    //     date: '1/17/2022',
+    //   },
+    //   {
+    //     title: 'title2',
+    //     content: 'content2',
+    //     author: 'author',
+    //     date: '1/17/2022',
+    //   },
+    //   {
+    //     title: 'title3',
+    //     content: 'content',
+    //     author: 'author',
+    //     date: '1/17/2022',
+    //   },
+    // ];
+
     res.render('dashboard', {
       ...user,
       logged_in: req.session.logged_in,
@@ -63,6 +108,10 @@ router.get('/login', (req, res) => {
 
 router.get('/create-blog', (req, res) => {
   // If the user is already logged in, redirect the request to another route
+  // if (req.session.logged_in) {
+  //   res.redirect('/profile');
+  //   return;
+  // }
 
   res.render('create-blog', {
     logged_in: true,
@@ -71,6 +120,10 @@ router.get('/create-blog', (req, res) => {
 
 router.get('/edit-blog', (req, res) => {
   // If the user is already logged in, redirect the request to another route
+  // if (req.session.logged_in) {
+  //   res.redirect('/profile');
+  //   return;
+  // }
 
   const blog = {
     id: 'id',
@@ -104,6 +157,26 @@ router.get('/blogs/:id', async (req, res) => {
   });
 
   const blog = postData.get({ plain: true });
+
+  // const blog = {
+  //   id: 'id',
+  //   title: 'title2',
+  //   content: 'content2',
+  //   author: 'author',
+  //   date: '1/17/2022',
+  //   comments: [
+  //     {
+  //       content: 'this is a comment',
+  //       author: 'author',
+  //       date: '1/17/2022',
+  //     },
+  //     {
+  //       content: 'this is a comment 2',
+  //       author: 'author',
+  //       date: '1/17/2022',
+  //     },
+  //   ],
+  // };
 
   res.render('blog-page', {
     ...blog,
